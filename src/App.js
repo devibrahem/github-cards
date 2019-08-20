@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import CardList from "./Cardlist";
 import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Form from './Form'
+ 
+class App extends Component {
+  state = { 
+    testData : [],
+   }
+   addNewProfile = (profileData) => {
+     this.setState(prevState => ({
+       testData:[...prevState.testData,profileData]
+     }))
+   }
+  render() { 
+    return ( <div className="App">
+    <Form onSubmite={this.addNewProfile} />
+    <h1>The Github Cards App</h1>
+    <CardList profiles={this.state.testData} />
+    
+  </div> );
+  }
 }
-
+ 
 export default App;
